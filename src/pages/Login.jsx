@@ -1,6 +1,6 @@
 import React, {useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { Container, Row, Col, Form, Button} from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Spinner, Alert} from 'react-bootstrap';
 import Foot from '../components/Foot';
 import '../index.css';
 import { useNavigate } from "react-router-dom";
@@ -11,6 +11,8 @@ import Header from '../components/Header';
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(true);
 
   const navigate = useNavigate();
 
@@ -26,10 +28,22 @@ function Login() {
     try {
       e.preventDefault();
 
-      await firebase.auth().signInWithEmailAndPassword(email, password);
+      if (!email || !password) {
+        setError(false);
+        setTimeout(() => {
+          setError(true);
+        }, 2000);
 
-      navigate("/account", { replace: true });
+        setLoading(false);
+      } else {
+        setLoading(true);
+        await firebase.auth().signInWithEmailAndPassword(email, password);
+
+        navigate("/account", { replace: true });
+        setLoading(false);
+      };
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
   };
@@ -61,6 +75,7 @@ function Login() {
             <Col md='6' className='mx-auto'>
               <Form onSubmit={handleLogin} className='form-top p-4 border border-dark shadow-lg mb-5 b-body rounded'>
                 <h3 className='best text-center mt-2 mb-4 fw-bold'>Login to continue keeping records of your sales</h3>
+                {!error ? <Alert variant='danger' className='text-center mt-1 mb-3'>Enter email and password</Alert> : '' }
                 <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
                   <Form.Label column sm="2" className='log fw-bolder'>Email</Form.Label>
                   <Col sm="10">
@@ -76,8 +91,11 @@ function Login() {
                 </Form.Group>
 
                 <div className="d-flex justify-content-around mt-4 mb-3">
-                    <Button variant="outline-warning" type="submit" className='btn-lg'>
-                      Sign in
+                  <Button disabled={loading} variant="outline-warning" className='btn-lg' type="submit" onClick={handleLogin}>
+                      {loading ? (
+                        <i>
+                          <Spinner as="span" animation="grow" variant="light" size="sm" role="status" aria-hidden="true"/> Signing in
+                        </i>) : ("Sign in")}
                     </Button>
                     <Button variant="outline-success" type="submit" className='btn-lg' onClick={signInWithGoogle}>
                       Login with Google

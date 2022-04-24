@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import Helmet from 'react-helmet';
-import { Container, Form, Button } from 'react-bootstrap';
+import { Container, Form, Button, Alert } from 'react-bootstrap';
 import NumberFormat from 'react-number-format';
 import { v4 as uuid } from 'uuid';
 import firebase from '../firebase/config';
+import { BiErrorCircle, BiCheck } from 'react-icons/bi';
 
 function UserForm() {
   const [item, setItem] = useState('');
   const [itemNum, setItemNum] = useState('');
   const [amount, setAmount] = useState('');
+  const [error, setError] = useState(true);
+  const [success, setSuccess] = useState(true);
 
   const handleItem = (e) => {
     setItem(e.target.value);
@@ -26,24 +29,35 @@ function UserForm() {
     try {
       e.preventDefault();
     
+      if (!item || !itemNum || !amount) {
+        setError(false);
+        setTimeout(() => {
+          setError(true);
+        }, 2000);
+      } else {
+        let newUser = {
+          id: uuid(),
+          date: new Date(),
+          item: item,
+          itemNum: itemNum,
+          amount: amount * 1
+        };
+  
+        setSuccess(false);
+        setTimeout(() => {
+          setSuccess(true);
+        }, 2000);
+    
+        firebase.firestore().collection("users").doc(newUser.id).set(newUser);
 
-    let newUser = {
-      id: uuid(),
-      date: new Date(),
-      item: item,
-      itemNum: itemNum,
-      amount: amount * 1
-    };
-
-    firebase.firestore().collection("users").doc(newUser.id).set(newUser);
+        setItem('');
+        setItemNum('');
+        setAmount('');
+      }
 
     } catch(error) {
       console.log(error)
     }
-
-    setItem('');
-    setItemNum('');
-    setAmount('');
   }
 
   return (
@@ -54,6 +68,8 @@ function UserForm() {
       <Container>
         <h3 className='text-center text-muted mt-2 mb-2 text-decoration-underline'>Book-Keeper</h3>
         <Form onSubmit={handleSubmit}>
+        {!error ? <Alert variant='danger' className='text-center'> <BiErrorCircle/> Leave no input field empty</Alert> : '' }
+        {!success ? <Alert variant='success' className='text-center'> <BiCheck /> Sales recorded</Alert> : '' }
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
             <Form.Label className='text-success'>Item Sold</Form.Label>
             <Form.Control type="text" placeholder="name of item" value={item} onChange={handleItem}/>
