@@ -1,13 +1,74 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Navbar CSS */
+.nav{
+	background-color: rgb(32, 30, 30);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.heads {
+  color: khaki;
+}
+
+.active {
+  border-top: whitesmoke solid 2px;
+  border-left: whitesmoke solid 2px;
+  border-right: brown solid 2px;
+  border-bottom: brown solid 2px;
+  font-weight: bolder;
+  font-style: italic;
+}
+
+/* Homepage CSS */
+.best {
+  color: gold;
+}
+
+.emp {
+  color: khaki;
+}
+
+.showcase {
+  height: 100vh;
+  background-image: linear-gradient(rgba(32, 27, 27, 0.7),rgba(32, 27, 27,0.7)), url('./assets/bgImg.jpg');
+  display: grid;
+  place-items: center;
+  text-align: center;
+  color: #fff ;
+}
+
+.showcase_inner button {
+  background-color: deepskyblue;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.showcase_inner button a {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* Login page CSS */
+.form-top {
+  margin-top: 150px;
+}
+
+.showcase-1 {
+  height: 100vh;
+  background-image: linear-gradient(rgba(32, 27, 27, 0.7),rgba(32, 27, 27,0.7)), url('./assets/bgImg.jpg');
+}
+
+.log {
+  color: whitesmoke;
+}
+
+/* Register page CSS */
+.form-top-1 {
+  margin-top: 140px;
+}
+
+/* Footer CSS */
+footer {
+  background-color: rgb(32, 30, 30);
+  margin-top: 20px;
 }
