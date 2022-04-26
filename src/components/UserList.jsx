@@ -17,7 +17,10 @@ function UserList() {
         <Row>
           {users.length > 0 ? (
             <>
-              <h4 className='text-center mt-4 mb-2 text-info'>Sales History</h4>
+              <h4 className='text-center mt-4 text-success text-decoration-underline fw-bold'>Sales History</h4>
+              <h5 className='text-center mt-2 text-muted fw-bold mark'>
+                Total Sales Made: <span className='text-danger'>GH¢</span> <span className='text-dark'><NumberFormat displayType="text" value={totalAmount} thousandSeparator={true} /></span>
+              </h5>
               <Table bordered hover variant='dark'>
                 <thead>
                   <tr>
@@ -36,7 +39,6 @@ function UserList() {
                 })}
                 </tbody>
               </Table>
-              <h5 className='text-center mt-2'>Total Sales Made: <span className='text-success'>GH¢</span> <span className='text-dark'><NumberFormat displayType="text" value={totalAmount} thousandSeparator={true} /></span></h5>
             </>
           ) : ('')}
           

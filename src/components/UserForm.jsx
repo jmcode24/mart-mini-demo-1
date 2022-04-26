@@ -37,7 +37,7 @@ function UserForm() {
       } else {
         let newUser = {
           id: uuid(),
-          date: new Date(),
+          date: Date.now(),
           item: item,
           itemNum: itemNum,
           amount: amount * 1
@@ -66,7 +66,7 @@ function UserForm() {
         <title>Best Mart | Employee Account</title>
       </Helmet>
       <Container>
-        <h3 className='text-center text-muted mt-2 mb-2 text-decoration-underline'>Book-Keeper</h3>
+        <h3 className='text-center text-muted mt-2 mb-2 fw-bold text-decoration-underline'>Book-Keeper</h3>
         <Form onSubmit={handleSubmit}>
         {!error ? <Alert variant='danger' className='text-center'> <BiErrorCircle/> Leave no input field empty</Alert> : '' }
         {!success ? <Alert variant='success' className='text-center'> <BiCheck /> Sales recorded</Alert> : '' }

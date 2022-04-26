@@ -17,7 +17,7 @@ const Header = () => {
             <Nav.Link as={NavLink} to='/register' activeclassname="active"><span className='heads'>Register</span></Nav.Link>
           </Nav>
         </Container>
-    </Navbar>
+      </Navbar>
     </>
   );
 };

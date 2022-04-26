@@ -46,7 +46,7 @@ function User(props) {
   return (
     <>
       <tr>
-        <td className='text-center'> {moment(user.date).format('dddd, MMMM Do YYYY, h:mm')}</td>
+        <td className='text-center'> {moment(user.date).format('ddd. MMMM Do YY. h:mm a')}</td>
         <td className='text-center'><span className='text-info'>•</span> {user.item}</td>
         <td className='text-center'><span className='text-info'>⁍</span> {user.itemNum}</td>
         <td className='text-center'><span className='text-success'>¢</span> <NumberFormat displayType="text" value={user.amount} thousandSeparator={true} /></td>

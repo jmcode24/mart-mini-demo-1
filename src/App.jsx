@@ -19,7 +19,7 @@ function App() {
   });
 
   useEffect(() => {
-    firebase.firestore().collection("users").orderBy("id").onSnapshot((document) => {
+    firebase.firestore().collection("users").orderBy("date", "desc").onSnapshot((document) => {
       let users = [];
 
       document.forEach((doc) => {
@@ -28,7 +28,7 @@ function App() {
 
       dispatch(setUsers(users));
     });
-  }, []);
+  });
 
   return (
     <div><Router /></div>

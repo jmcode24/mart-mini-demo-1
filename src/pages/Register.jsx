@@ -28,9 +28,19 @@ function Register() {
     try {
       e.preventDefault();
 
-      firebase.auth().createUserWithEmailAndPassword(email, password);
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password)
+        .then(function (result) {
+          result.user.updateProfile({
+            displayName: firstName,
+          });
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
 
-      navigate("/account", { replace: true });
+        navigate("/account", { replace: true });
     } catch (error) {
       console.log(error);
     }
