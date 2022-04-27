@@ -59,7 +59,7 @@ function Register() {
             <Col md='8' className='mx-auto'>
               <Form onSubmit={handleSignUp} className='form-top-1 p-4 border border-dark shadow-lg mb-4 b-body rounded'>
                 <h3 className='best text-center mt-2 mb-4 fw-bold'>Register & get started</h3>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Group className="mb-3">
                   <Row>
                     <Col md="6">
                       <Form.Label className='log fw-bolder'>First Name</Form.Label>
@@ -71,7 +71,7 @@ function Register() {
                     </Col>
                   </Row>
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Group className="mb-3">
                   <Row>
                     <Col md="6">
                       <Form.Label className='log fw-bolder'>Gender</Form.Label>
@@ -92,7 +92,7 @@ function Register() {
                     </Col>
                   </Row>
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Group className="mb-3">
                   <Row>
                     <Col md="6">
                       <Form.Label className='log fw-bolder'>Phone Number</Form.Label>
@@ -104,7 +104,7 @@ function Register() {
                     </Col>
                   </Row>
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                <Form.Group className="mb-3">
                   <Row>
                     <Col md="6">
                       <Form.Label className='log fw-bolder'>Email</Form.Label>

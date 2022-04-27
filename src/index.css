@@ -54,7 +54,7 @@
 }
 
 .showcase-1 {
-  height: 100vh;
+  padding: 50px;
   background-image: linear-gradient(rgba(32, 27, 27, 0.7),rgba(32, 27, 27,0.7)), url('./assets/bgImg.jpg');
 }
 
